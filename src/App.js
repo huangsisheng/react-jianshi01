@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+/*
+ * @Author: your name
+ * @Date: 2021-03-03 16:38:25
+ * @LastEditTime: 2021-03-03 17:29:00
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \jianshu01\src\App.js
+ */
+
+import Header from "./common/header";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header></Header>
     </div>
   );
 }
