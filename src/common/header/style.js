@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-03 17:29:46
- * @LastEditTime: 2021-03-03 22:50:09
+ * @LastEditTime: 2021-03-04 22:14:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \jianshu01\src\common\header\style.js
@@ -56,10 +56,30 @@ export const NavItem = styled.div`
         color:#969696;
     }
 `
+
+export const SearchWrapper = styled.div`
+    position:relative;
+    float:left;
+    .iconfont{
+        position:absolute;
+        right:5px;
+        bottom:11px;
+        width:30px;
+        height:30px;
+        line-height:30px;
+        border-radius:50%;
+        text-align:center;
+        cursor: pointer;
+        &.focused{
+            background-color:#969696;
+            color:#fff;
+        }
+    }
+`
 export const NavSearch = styled.input.attrs({
     placeholder: '搜索'
 })`
-    padding: 0 40px 0 20px;
+    padding: 0 42px 0 20px;
     width: 160px;
     height: 38px;
     font-size: 14px;
@@ -68,8 +88,26 @@ export const NavSearch = styled.input.attrs({
     background: #eee;
     transition: width .5s;
     outline: none;
+    color:#777;
     &::placeholder{
         color:#999;
+    }
+    &.focused{
+        width: 240px;
+    }
+    &.slide-enter{
+        transition:all 0.5s ease-out;
+        width: 160px;
+    }
+    &.slide-enter-active{
+        width: 240px;
+    }
+    &.slide-exit{
+        transition:all 0.5s ease-out;
+        width: 240px;
+    }
+    &.slide-exit-active{
+        width: 160px;
     }
 `
 
