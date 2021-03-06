@@ -1,7 +1,7 @@
 /*
 * @Author: your name
 * @Date: 2021-03-03 17:24:03
- * @LastEditTime: 2021-03-06 16:52:58
+ * @LastEditTime: 2021-03-07 00:40:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \jianshu01\src\common\header\index.js
@@ -33,7 +33,54 @@ class Header extends Component {
     // constructor(props) {
     //     super(props)
     // }
+
+    getListArea() {
+        const {
+            focused,
+            mouseIn,
+            list,
+            page,
+            totalPage,
+            handleMouseEnter,
+            handleMouseLeave,
+            handleChangePage
+        } = this.props
+        let newList = list.toJS(), // 把immutable 对象转换为JS对象
+            eleList = []
+        if (newList.length) {
+            for (let i = (page - 1) * 10; i < page * 10; i++) {
+                eleList.push(<SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>)
+            }
+        }
+        if (focused || mouseIn) {
+            return (
+                <SearchInfo
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}>
+                    <SearchInfoTitle>热门搜索
+                        <SearchInfoSwitch
+                            onClick={() => { handleChangePage(page, totalPage, this.spinIcon) }}>
+                            <i ref={(icon) => { this.spinIcon = icon }} className={'iconfont spin'}>&#xe63a;</i>换一批
+                        </SearchInfoSwitch>
+                    </SearchInfoTitle>
+                    <SearchInfoList>
+                        {eleList}
+                    </SearchInfoList>
+                </SearchInfo>
+            )
+        } else {
+            return null
+        }
+    }
+
     render() {
+        const {
+            focused,
+            handleFocus,
+            handleBlur,
+            list
+        } = this.props
+
         return (
             <HeaderWrapper>
                 <Logo href="/" />
@@ -42,17 +89,17 @@ class Header extends Component {
                     <NavItem className="left">下载App</NavItem>
                     <SearchWrapper>
                         <CSSTransition
-                            in={this.props.focused}
+                            in={focused}
                             timeout={500}
                             classNames="slide"
                         >
                             <NavSearch
-                                onFocus={this.props.handleFocus}
-                                onBlur={this.props.handleBlur}
-                                className={this.props.focused ? 'focused' : ''} />
+                                onFocus={() => { handleFocus(list) }}
+                                onBlur={handleBlur}
+                                className={focused ? 'focused' : ''} />
                         </CSSTransition>
-                        <i className={this.props.focused ? 'focused iconfont' : 'iconfont'}>&#xe61c;</i>
-                        {this.getListArea(this.props.focused)}
+                        <i className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe61c;</i>
+                        {this.getListArea(focused)}
                     </SearchWrapper>
                     <NavItem className="right">
                         <i className="iconfont">&#xe636;</i>
@@ -67,41 +114,47 @@ class Header extends Component {
         );
     }
 
-    getListArea(show) {
-        if (show) {
-            return (
-                <SearchInfo>
-                    <SearchInfoTitle>热门搜索<SearchInfoSwitch>换一批</SearchInfoSwitch>
-                    </SearchInfoTitle>
-                    <SearchInfoList>
-                        <SearchInfoItem>教育</SearchInfoItem>
-                        <SearchInfoItem>教育</SearchInfoItem>
-                        <SearchInfoItem>教育</SearchInfoItem>
-                        <SearchInfoItem>教育</SearchInfoItem>
-                        <SearchInfoItem>教育</SearchInfoItem>
-                        <SearchInfoItem>教育</SearchInfoItem>
-                    </SearchInfoList>
-                </SearchInfo>
-            )
-        } else {
-            return null
-        }
-    }
+
 }
 
 const mapStateToProps = (state) => {
     return {
         // 使用getIn方法获取immutable中的值,那个模块下对应的那个值
-        focused: state.getIn(['header', 'focused'])
+        focused: state.getIn(['header', 'focused']),
+        list: state.getIn(['header', 'list']),
+        mouseIn: state.getIn(['header', 'mouseIn']),
+        page: state.getIn(['header', 'page']),
+        totalPage: state.getIn(['header', 'totalPage']),
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleFocus() {
+        handleFocus(list) {
+            console.log(list)
+            // 默认会把dispatch 作为参数传递进去，redux-thunk
+            list.size === 0 && dispatch(actionCreators.getList())
             dispatch(actionCreators.searchFocus())
         },
         handleBlur() {
             dispatch(actionCreators.searchBlur())
+        },
+        handleMouseEnter() {
+            dispatch(actionCreators.mouseEnter())
+        },
+        handleMouseLeave() {
+            dispatch(actionCreators.mouseLeave())
+        },
+        handleChangePage(page, totalPage, el) {
+            let originAngle = el.style.transform.replace(/[^0-9]/gi, '')
+            if (originAngle) {
+                originAngle = parseInt(originAngle)
+            } else {
+                originAngle = 0
+            }
+            el.style.transform = `rotate(${originAngle + 360}deg)`
+            page < totalPage
+                ? dispatch(actionCreators.changePage(page + 1))
+                : dispatch(actionCreators.changePage(1))
         }
     }
 }

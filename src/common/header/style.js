@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-03 17:29:46
- * @LastEditTime: 2021-03-06 16:45:33
+ * @LastEditTime: 2021-03-07 00:07:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \jianshu01\src\common\header\style.js
@@ -60,7 +60,7 @@ export const NavItem = styled.div`
 export const SearchWrapper = styled.div`
     position:relative;
     float:left;
-    .iconfont{
+    .zoom{
         position:absolute;
         right:5px;
         bottom:11px;
@@ -130,6 +130,15 @@ export const SearchInfoTitle = styled.div`
 export const SearchInfoSwitch = styled.span`
     float:right;
     font-size:13px;
+    cursor: pointer;
+    .spin{
+        display:block;
+        float:left;
+        margin-right:2px;
+        font-size:12px;
+        transition: all .2s ease-in;
+        transform-origin:center center;
+    }
 `
 export const SearchInfoList = styled.span`
     overflow:hidden;

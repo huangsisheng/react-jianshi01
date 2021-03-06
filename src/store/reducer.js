@@ -1,12 +1,12 @@
 /*
  * @Author: your name
  * @Date: 2021-03-04 22:48:10
- * @LastEditTime: 2021-03-06 16:17:42
+ * @LastEditTime: 2021-03-06 22:10:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \react-jianshi01\src\store\reducer.js
  */
-// redux-immutable:
+// combineReducers 把所有其他的store合并成一个store
 import { combineReducers } from "redux-immutable"
 import { reducer as headerReducer } from '../common/header/store'
 const reducer = combineReducers({
