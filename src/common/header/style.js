@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-03 17:29:46
- * @LastEditTime: 2021-03-04 22:14:36
+ * @LastEditTime: 2021-03-06 16:45:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \jianshu01\src\common\header\style.js
@@ -111,6 +111,41 @@ export const NavSearch = styled.input.attrs({
     }
 `
 
+export const SearchInfo = styled.div`
+    position:absolute;
+    left:0;
+    top:56px;
+    width:240px;
+    padding:0 20px;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgb(0 0 0 / 20%);
+`
+export const SearchInfoTitle = styled.div`
+    margin-top:20px;
+    margin-bottom:15px;
+    line-height:20px;
+    font-size:14px;
+    color:#969696;
+`
+export const SearchInfoSwitch = styled.span`
+    float:right;
+    font-size:13px;
+`
+export const SearchInfoList = styled.span`
+    overflow:hidden;
+`
+export const SearchInfoItem = styled.a`
+    display:block;
+    float:left;
+    line-height:20px;
+    padding:0 5px;
+    color:#787878;
+    border:1px solid #ddd;
+    font-size:12px;
+    border-radius:3px;
+    margin-right:10px;
+    margin-bottom:10px;
+`
 export const Addtion = styled.div`
     float:left;
     display:flex;

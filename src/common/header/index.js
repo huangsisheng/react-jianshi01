@@ -1,19 +1,16 @@
 /*
 * @Author: your name
 * @Date: 2021-03-03 17:24:03
- * @LastEditTime: 2021-03-04 22:58:16
+ * @LastEditTime: 2021-03-06 16:52:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \jianshu01\src\common\header\index.js
  */
-import React from "react";
+import React, { Component } from "react";
 // 动画库
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux"
-import {
-    SEARCH_FOCUS,
-    SEARCH_BLUR
-} from '../../store/actionTypes'
+import { actionCreators } from "./store"
 
 import {
     HeaderWrapper,
@@ -23,55 +20,88 @@ import {
     NavSearch,
     Addtion,
     Button,
-    SearchWrapper
+    SearchWrapper,
+    SearchInfo,
+    SearchInfoTitle,
+    SearchInfoSwitch,
+    SearchInfoItem,
+    SearchInfoList
 } from "./style";
-const Header = (props) => {
-    return (
-        <HeaderWrapper>
-            <Logo href="/" />
-            <Nav>
-                <NavItem className="left">首页</NavItem>
-                <NavItem className="left">下载App</NavItem>
-                <SearchWrapper>
-                    <CSSTransition
-                        in={props.focused}
-                        timeout={500}
-                        classNames="slide"
-                    >
-                        <NavSearch
-                            onFocus={props.handleFocus}
-                            onBlur={props.handleBlur}
-                            className={props.focused ? 'focused' : ''} />
-                    </CSSTransition>
-                    <i className={props.focused ? 'focused iconfont' : 'iconfont'}>&#xe61c;</i>
-                </SearchWrapper>
-                <NavItem className="right">
-                    <i className="iconfont">&#xe636;</i>
-                </NavItem>
-                <NavItem className="right">登录</NavItem>
-            </Nav>
-            <Addtion>
-                <Button className="sign-up">注册</Button>
-                <Button className="write"><i className="iconfont">&#xe676;</i>写文章</Button>
-            </Addtion>
-        </HeaderWrapper>
-    );
+
+
+class Header extends Component {
+    // constructor(props) {
+    //     super(props)
+    // }
+    render() {
+        return (
+            <HeaderWrapper>
+                <Logo href="/" />
+                <Nav>
+                    <NavItem className="left">首页</NavItem>
+                    <NavItem className="left">下载App</NavItem>
+                    <SearchWrapper>
+                        <CSSTransition
+                            in={this.props.focused}
+                            timeout={500}
+                            classNames="slide"
+                        >
+                            <NavSearch
+                                onFocus={this.props.handleFocus}
+                                onBlur={this.props.handleBlur}
+                                className={this.props.focused ? 'focused' : ''} />
+                        </CSSTransition>
+                        <i className={this.props.focused ? 'focused iconfont' : 'iconfont'}>&#xe61c;</i>
+                        {this.getListArea(this.props.focused)}
+                    </SearchWrapper>
+                    <NavItem className="right">
+                        <i className="iconfont">&#xe636;</i>
+                    </NavItem>
+                    <NavItem className="right">登录</NavItem>
+                </Nav>
+                <Addtion>
+                    <Button className="sign-up">注册</Button>
+                    <Button className="write"><i className="iconfont">&#xe676;</i>写文章</Button>
+                </Addtion>
+            </HeaderWrapper>
+        );
+    }
+
+    getListArea(show) {
+        if (show) {
+            return (
+                <SearchInfo>
+                    <SearchInfoTitle>热门搜索<SearchInfoSwitch>换一批</SearchInfoSwitch>
+                    </SearchInfoTitle>
+                    <SearchInfoList>
+                        <SearchInfoItem>教育</SearchInfoItem>
+                        <SearchInfoItem>教育</SearchInfoItem>
+                        <SearchInfoItem>教育</SearchInfoItem>
+                        <SearchInfoItem>教育</SearchInfoItem>
+                        <SearchInfoItem>教育</SearchInfoItem>
+                        <SearchInfoItem>教育</SearchInfoItem>
+                    </SearchInfoList>
+                </SearchInfo>
+            )
+        } else {
+            return null
+        }
+    }
 }
 
 const mapStateToProps = (state) => {
     return {
-        focused: state.focused
+        // 使用getIn方法获取immutable中的值,那个模块下对应的那个值
+        focused: state.getIn(['header', 'focused'])
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
         handleFocus() {
-            const action = { type: SEARCH_FOCUS }
-            dispatch(action)
+            dispatch(actionCreators.searchFocus())
         },
         handleBlur() {
-            const action = { type: SEARCH_BLUR }
-            dispatch(action)
+            dispatch(actionCreators.searchBlur())
         }
     }
 }
