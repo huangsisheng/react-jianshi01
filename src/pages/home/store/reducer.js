@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-07 22:23:16
- * @LastEditTime: 2021-03-08 16:40:33
+ * @LastEditTime: 2021-03-08 22:39:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \react-jianshi01\src\pages\home\store\reducer.js
@@ -70,12 +70,22 @@ const defaultState = fromJS({
         "https://cdn2.jianshu.io/assets/web/banner-s-5-4ba25cf5041931a0ed2062828b4064cb.png",
     },
   ],
+  listPage: 1,
 });
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
-    case constants.TOPIC_LITS:
-      return state;
+    case constants.HOME_DATA:
+      return state.merge({
+        topicList: fromJS(action.topicList),
+        articleList: fromJS(action.articleList),
+        recommendList: fromJS(action.recommendList),
+      });
+    case constants.MORE_lIST_DATA:
+      return state.merge({
+        listPage: action.page,
+        articleList: state.get("articleList").concat(fromJS(action.moreList)),
+      });
     default:
       return state;
   }

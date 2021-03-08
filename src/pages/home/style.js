@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-07 21:45:20
- * @LastEditTime: 2021-03-08 17:51:12
+ * @LastEditTime: 2021-03-08 22:19:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \react-jianshi01\src\pages\home\style.js
@@ -86,6 +86,17 @@ export const ListInfo = styled.div`
     font-size: 13px;
     color: #999;
   }
+`;
+export const LoadMore = styled.div`
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #8a868e;
+  margin: 30px 0;
+  cursor: pointer;
+  border-radius:20px;
+  color:#fff;
 `;
 /* List */
 
