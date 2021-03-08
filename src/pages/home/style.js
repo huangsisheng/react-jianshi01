@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-07 21:45:20
- * @LastEditTime: 2021-03-07 23:02:18
+ * @LastEditTime: 2021-03-08 17:51:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \react-jianshi01\src\pages\home\style.js
@@ -88,3 +88,38 @@ export const ListInfo = styled.div`
   }
 `;
 /* List */
+
+/* Recommend */
+
+export const RecommendWrapper = styled.div`
+  width: 280px;
+  margin-bottom: 30px;
+`;
+
+export const RecommendItem = styled.div`
+  width: 280px;
+  height: 50px;
+  background: url(${(props) => props.imgUrl}) no-repeat center;
+  background-size: contain;
+`;
+/* Recommend */
+
+/* writor */
+export const WritorWrapper = styled.div`
+  width: 278px;
+`;
+export const WritorToggle = styled.div`
+  overflow: hidden;
+  .search-left {
+    font-size: 14px;
+    color: #969696;
+  }
+  .search-right {
+    float: right;
+    font-size: 14px;
+    color: #969696;
+  }
+`;
+export const WritorItem = styled.div``;
+export const WritorAll = styled.div``;
+/* writor */

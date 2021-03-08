@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-07 22:23:16
- * @LastEditTime: 2021-03-07 23:15:04
+ * @LastEditTime: 2021-03-08 16:40:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \react-jianshi01\src\pages\home\store\reducer.js
@@ -46,6 +46,28 @@ const defaultState = fromJS({
       title: "戴望舒——在最美的时光里错过",
       desc:
         "【青•故事优选】[https://www.jianshu.com/c/11c8f8761ed1]专题推荐文章 01 撑着油纸伞，独自彷徨在悠长，...",
+    },
+  ],
+  recommendList: [
+    {
+      id: "1",
+      imgUrl:
+        "https://cdn2.jianshu.io/assets/web/banner-s-daily-e6f6601abc495573ad37f2532468186f.png",
+    },
+    {
+      id: "2",
+      imgUrl:
+        "https://cdn2.jianshu.io/assets/web/banner-s-club-aa8bdf19f8cf729a759da42e4a96f366.png",
+    },
+    {
+      id: "3",
+      imgUrl:
+        "https://cdn2.jianshu.io/assets/web/banner-s-7-1a0222c91694a1f38e610be4bf9669be.png",
+    },
+    {
+      id: "4",
+      imgUrl:
+        "https://cdn2.jianshu.io/assets/web/banner-s-5-4ba25cf5041931a0ed2062828b4064cb.png",
     },
   ],
 });
