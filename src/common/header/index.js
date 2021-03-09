@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-03 17:24:03
- * @LastEditTime: 2021-03-07 00:51:45
+ * @LastEditTime: 2021-03-09 21:52:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \jianshu01\src\common\header\index.js
@@ -11,7 +11,7 @@ import React, { Component } from "react";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { actionCreators } from "./store";
-
+import { Link } from "react-router-dom";
 import {
   HeaderWrapper,
   Logo,
@@ -90,7 +90,9 @@ class Header extends Component {
 
     return (
       <HeaderWrapper>
-        <Logo href="/" />
+        <Link to="/">
+          <Logo />
+        </Link>
         <Nav>
           <NavItem className="left">首页</NavItem>
           <NavItem className="left">下载App</NavItem>

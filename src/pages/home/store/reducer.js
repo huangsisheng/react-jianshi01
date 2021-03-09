@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-07 22:23:16
- * @LastEditTime: 2021-03-08 22:39:50
+ * @LastEditTime: 2021-03-09 21:33:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \react-jianshi01\src\pages\home\store\reducer.js
@@ -71,6 +71,7 @@ const defaultState = fromJS({
     },
   ],
   listPage: 1,
+  showBack: false,
 });
 
 const reducer = (state = defaultState, action) => {
@@ -86,6 +87,8 @@ const reducer = (state = defaultState, action) => {
         listPage: action.page,
         articleList: state.get("articleList").concat(fromJS(action.moreList)),
       });
+    case constants.TOGGLE_SHOW:
+      return state.set("showBack", action.show);
     default:
       return state;
   }

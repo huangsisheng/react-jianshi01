@@ -9,3 +9,4 @@
 
 export const HOME_DATA = "home/HOME_DATA";
 export const MORE_lIST_DATA = "home/MORE_lIST_DATA";
+export const TOGGLE_SHOW = "home/TOGGLE_SHOW";

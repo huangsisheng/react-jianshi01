@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-08 21:29:07
- * @LastEditTime: 2021-03-08 22:40:30
+ * @LastEditTime: 2021-03-09 21:31:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \react-jianshi01\src\pages\home\store\actionCreators.js
@@ -42,5 +42,10 @@ export const getMoreData = (page) => {
     });
   };
 };
+
+export const toggleBackTopShow = (flag) => ({
+  type: constants.TOGGLE_SHOW,
+  show: flag,
+});
 
 /* 导出使用的方法 */

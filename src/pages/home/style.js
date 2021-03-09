@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-07 21:45:20
- * @LastEditTime: 2021-03-08 22:19:11
+ * @LastEditTime: 2021-03-09 21:22:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \react-jianshi01\src\pages\home\style.js
@@ -95,8 +95,8 @@ export const LoadMore = styled.div`
   background: #8a868e;
   margin: 30px 0;
   cursor: pointer;
-  border-radius:20px;
-  color:#fff;
+  border-radius: 20px;
+  color: #fff;
 `;
 /* List */
 
@@ -134,3 +134,16 @@ export const WritorToggle = styled.div`
 export const WritorItem = styled.div``;
 export const WritorAll = styled.div``;
 /* writor */
+
+export const BackTop = styled.div`
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  width: 90px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #ccc;
+  color: #fff;
+  cursor: pointer;
+`;

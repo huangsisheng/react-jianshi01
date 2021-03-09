@@ -6,10 +6,10 @@
  * @Description: In User Settings Edit
  * @FilePath: \react-jianshi01\src\pages\home\components\TopPic.js
  */
-import { Component } from "react";
+import { PureComponent } from "react";
 import { connect } from "react-redux";
 import { RecommendWrapper, RecommendItem } from "../style";
-class Recommend extends Component {
+class Recommend extends PureComponent {
   render() {
     return (
       <RecommendWrapper>

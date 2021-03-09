@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-03 16:38:25
- * @LastEditTime: 2021-03-07 21:34:38
+ * @LastEditTime: 2021-03-09 22:39:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \jianshu01\src\App.js
@@ -17,12 +17,10 @@ function App() {
   return (
     <Provider store={store}>
       <div>
-        <Header></Header>
         <BrowserRouter>
-          <div>
-            <Route path="/" exact component={Home}></Route>
-            <Route path="/detail" exact component={Detail}></Route>
-          </div>
+          <Header />
+          <Route path="/" exact component={Home}></Route>
+          <Route path="/detail/:id" exact component={Detail}></Route>
         </BrowserRouter>
       </div>
     </Provider>

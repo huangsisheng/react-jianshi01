@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-03 17:29:46
- * @LastEditTime: 2021-03-07 00:51:17
+ * @LastEditTime: 2021-03-09 21:51:52
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \jianshu01\src\common\header\style.js
@@ -16,8 +16,7 @@ export const HeaderWrapper = styled.div`
   border: 1px solid #f0f0f0;
 `;
 
-export const Logo = styled.a`
-  display: block;
+export const Logo = styled.div`
   float: left;
   height: 56px;
   width: 100px;
