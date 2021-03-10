@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-03-03 17:24:03
- * @LastEditTime: 2021-03-09 21:52:15
+ * @LastEditTime: 2021-03-10 22:45:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \jianshu01\src\common\header\index.js
@@ -11,6 +11,8 @@ import React, { Component } from "react";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { actionCreators } from "./store";
+import { actionCreators as loginCreators } from "../../pages/login/store";
+
 import { Link } from "react-router-dom";
 import {
   HeaderWrapper,
@@ -86,8 +88,14 @@ class Header extends Component {
   }
 
   render() {
-    const { focused, handleFocus, handleBlur, list } = this.props;
-
+    const {
+      focused,
+      list,
+      isLogin,
+      handleFocus,
+      handleBlur,
+      handleLogout,
+    } = this.props;
     return (
       <HeaderWrapper>
         <Link to="/">
@@ -114,12 +122,27 @@ class Header extends Component {
           <NavItem className="right">
             <i className="iconfont">&#xe636;</i>
           </NavItem>
-          <NavItem className="right">登录</NavItem>
+          {isLogin ? (
+            <NavItem
+              className="right"
+              onClick={() => {
+                handleLogout();
+              }}
+            >
+              退出
+            </NavItem>
+          ) : (
+            <Link to="/login">
+              <NavItem className="right">登录</NavItem>
+            </Link>
+          )}
         </Nav>
         <Addtion>
           <Button className="sign-up">注册</Button>
           <Button className="write">
-            <i className="iconfont">&#xe676;</i>写文章
+            <Link to="/write">
+              <i className="iconfont">&#xe676;</i>写文章
+            </Link>
           </Button>
         </Addtion>
       </HeaderWrapper>
@@ -135,6 +158,7 @@ const mapStateToProps = (state) => {
     mouseIn: state.getIn(["header", "mouseIn"]),
     page: state.getIn(["header", "page"]),
     totalPage: state.getIn(["header", "totalPage"]),
+    isLogin: state.getIn(["login", "isLogin"]),
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -165,6 +189,9 @@ const mapDispatchToProps = (dispatch) => {
       page < totalPage
         ? dispatch(actionCreators.changePage(page + 1))
         : dispatch(actionCreators.changePage(1));
+    },
+    handleLogout() {
+      dispatch(loginCreators.logout());
     },
   };
 };
